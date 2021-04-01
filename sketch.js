@@ -87,7 +87,7 @@ function setup() {
 
   
   trex.setCollider("rectangle",0,0,trex.width,trex.height);
-  trex.debug = true
+  // trex.debug = true;
   
   score = 0;
 
@@ -187,11 +187,29 @@ function draw() {
   drawSprites();
 
   //displaying score
+  push();
   fill(	249, 224, 118);
   stroke(214, 184, 90);
   strokeWeight(15);
   textSize(30);
   text("Score: "+ score, windowWidth/26, windowHeight/12);
+  pop();
+
+  push();
+  fill("red");
+  stroke("red");
+  strokeWeight(1);
+  textSize(35);
+  text("Presse Space Bar to jump!!!", windowWidth/2.5, windowHeight/26);
+  pop();
+
+  push();
+  fill("red");
+  stroke("red");
+  strokeWeight(1);
+  textSize(35);
+  text("Keep running but look out for the cactus hands!!!", windowWidth/3.3, windowHeight/10);
+  pop();
 
 }
 
@@ -204,10 +222,10 @@ function reset(){
 
 
 function spawnObstacles(){
-  if (frameCount % 60 === 0){
+  if (frameCount % 110 === 0){
     var obstacle = createSprite(windowWidth+100,height-55,10,40);
     obstacle.velocityX = -(6 + score/100);
-    obstacle.setCollider("rectangle", 0, 0, obstacle.width, obstacle.height);
+    // obstacle.setCollider("rectangle", 0, 0, obstacle.width, obstacle.height);
     // obstacle.debug = true;
 
     // obstacle.y = Math.round(random(height-55, height-45));
@@ -234,8 +252,8 @@ function spawnObstacles(){
     obstacle.lifetime = 300;
     obstacle.scale = 1;
    
-    obstaclesGroup.setColliderEach("rectangle",0,0,98,obstacle.height);
-    obstaclesGroup.debug = true
+    obstaclesGroup.setColliderEach("rectangle",0,0,obstacle.width,obstacle.height);
+    obstaclesGroup.debug = true;
    
    //add each obstacle to the group
     obstaclesGroup.add(obstacle);
